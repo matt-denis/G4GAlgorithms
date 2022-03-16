@@ -1,0 +1,1 @@
+Algorithms sorted by type
