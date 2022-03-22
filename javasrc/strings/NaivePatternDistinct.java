@@ -21,9 +21,9 @@ public class NaivePatternDistinct {
             if (s.charAt(i) != p.charAt(match)) {
                 match = 0;
             }
-            if (s.charAt(i) == p.charAt(match)) {
+            else {
                 match++;
-                if (match == m) System.out.println((i - m) + " ");
+                if (match == m) System.out.println((i - m + 1) + " ");
             }
         }
     }

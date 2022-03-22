@@ -18,6 +18,13 @@ public class AnagramSearch {
         System.out.println(searchLinear("eksz", "skz"));
     }
 
+    /**
+     * find if an anagram of the pattern is present in the text
+     * requires: text and pattern not null
+     * @param s text
+     * @param p pattern
+     * @return
+     */
     public static boolean searchLinear(String s, String p) {
         int m = p.length();
         int n = s.length();

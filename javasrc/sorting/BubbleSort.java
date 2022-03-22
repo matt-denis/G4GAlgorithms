@@ -10,8 +10,10 @@ public class BubbleSort {
         for (int i = hi; i > 0; i--) {
             boolean swapped = false;
             for (int j = 0; j < i; j++) {
-                if (a[j] > a[j + 1]) swap(a, j, j + 1);
-                swapped = true;
+                if (a[j] > a[j + 1]) {
+                    swap(a, j, j + 1);
+                    swapped = true;
+                }
             }
             if (!swapped) break; // no swap occured in this iteration => it has become sorted
         }

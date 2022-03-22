@@ -15,6 +15,7 @@ public class LexicographicRank {
             count[s.charAt(i)]++;
         }
         for (int i = 1; i < CHAR; i++) {
+            // how many character preceeding current character
             count[i] += count[i - 1]; // cumulative count
         }
         int res = 1;
