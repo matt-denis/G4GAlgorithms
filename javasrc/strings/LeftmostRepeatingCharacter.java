@@ -7,7 +7,8 @@ import java.util.Arrays;
 public class LeftmostRepeatingCharacter {
     private static final int CHAR = 256;
 
-    public static int find(String s) {
+    /* Strategy 1*/
+    static int find(String s) {
         Map<Character, Integer> map = new HashMap<>();
         int[] charTable = new int[CHAR];
         for (int i = 0; i < s.length(); i++) {
@@ -30,28 +31,30 @@ public class LeftmostRepeatingCharacter {
         return min - 1; // reconverts to 0-based and returns -1 if no repeated elements
     }
 
+    /* Strategy 2*/
     static int leftMost(String str) {
-        int[] fIndex=new int[CHAR];
-        Arrays.fill(fIndex,-1);
-        int res=Integer.MAX_VALUE;
-        for(int i=0;i<str.length();i++){
-            int fi=fIndex[str.charAt(i)];
-            if(fi==-1)
-                fIndex[str.charAt(i)]=i;
+        int[] fIndex = new int[CHAR];
+        Arrays.fill(fIndex, -1);
+        int res = Integer.MAX_VALUE;
+        for (int i = 0; i < str.length(); i++) {
+            int fi = fIndex[str.charAt(i)];
+            if (fi == -1)
+                fIndex[str.charAt(i)] = i;
             else
-                res=Math.min(res,fi);
+                res = Math.min(res, fi);
         }    
     
-        return (res==Integer.MAX_VALUE)?-1:res;
+        return (res == Integer.MAX_VALUE)? -1 : res;
     } 
 
+    /* Strategy 3*/
     static int leftMostVisited(String str) 
     {
-        boolean[] visited=new boolean[CHAR];
-        int res=-1;
-        for(int i=str.length()-1;i>=0;i--){
-            if(visited[str.charAt(i)])
-                res=i;
+        boolean[] visited = new boolean[CHAR];
+        int res = -1;
+        for(int i = str.length() - 1; i >= 0; i--){
+            if (visited[str.charAt(i)])
+                res = i;
             else
                 visited[str.charAt(i)]=true;
         }

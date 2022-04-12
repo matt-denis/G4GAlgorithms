@@ -16,9 +16,9 @@ public class BalancedParenteses {
                 stack.push(c);
             }
             else {
-                if (stack.isEmpty()) return false;
-                char open = stack.pop();
-                if (OPEN.indexOf(open) != CLOSE.indexOf(c)) return false; // different parens
+                if (stack.isEmpty()) return false; // subexpression beginning with close parentehesis
+                char open = stack.pop();  // must match the last open parenthesis
+                if (OPEN.indexOf(open) != CLOSE.indexOf(c)) return false; // different parentheses
             }
         }
         return stack.isEmpty();

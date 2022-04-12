@@ -23,7 +23,6 @@ public class CountingSortString {
             output[count[arr.charAt(i) - offset] - 1] = arr.charAt(i);
             count[arr.charAt(i) - offset]--;
         }
-        arr = new String(output);
-        return arr;
+        return new String(output);
     }
 }

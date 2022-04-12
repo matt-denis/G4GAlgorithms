@@ -1,3 +1,8 @@
+/*
+Robin-Karp algorithm for pattern search.
+*/
+
+
 package strings;
 
 public class RKAlgorithm {
@@ -24,13 +29,13 @@ public class RKAlgorithm {
            if (p == t){
                boolean flag = true;
                for (int j = 0; j < M; j++)
-                    if (txt.charAt(i+j) != pat.charAt(j)) { flag = false; break; }
+                    if (txt.charAt(i + j) != pat.charAt(j)) { flag = false; break; }
                 if (flag) System.out.print(i + " ");
             }
            //Compute ti+1 using ti
            if (i < N - M) {
-               t=((d * (t - txt.charAt(i) * h)) + txt.charAt(i+M)) % q;
-            if (t < 0) t = t+q;
+               t=((d * (t - txt.charAt(i) * h)) + txt.charAt(i + M)) % q;
+            if (t < 0) t = t + q;
            }
         }
     }

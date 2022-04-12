@@ -1,6 +1,9 @@
 package strings;
 
 /*
+Problem: find starting indices of pattern in the text, where the characters
+int the pattern are all distinct.
+
 Implications of all characters in the pattern being distinct:
 Going along the string, if the first character matches with the character the cursor in the string
 is at, then we know that if there is a match, that character cannot appear before than 

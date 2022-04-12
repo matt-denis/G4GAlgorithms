@@ -1,3 +1,8 @@
+/** 
+Return a collection containing the non repeated elements of a given array.
+*/
+
+
 package hashing;
 
 import java.util.Map;

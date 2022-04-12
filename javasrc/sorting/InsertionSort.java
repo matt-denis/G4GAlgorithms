@@ -16,7 +16,7 @@ public class InsertionSort {
             int walk = i;
             int key = a[walk];
             while (walk > 0 && key < a[walk - 1]) {
-                a[walk] = a[walk -1];
+                a[walk] = a[walk - 1];
                 walk--;
             }
             a[walk] = key;

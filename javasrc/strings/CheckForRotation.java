@@ -1,3 +1,8 @@
+/*
+Problem: check if two given strings are rotations of each other.
+*/
+
+
 package strings;
 
 public class CheckForRotation {

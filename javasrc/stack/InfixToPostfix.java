@@ -79,7 +79,7 @@ public class InfixToPostfix {
         try (Scanner sc = new Scanner(System.in)) {
             System.out.println("Enter an expression");
             String expr = sc.nextLine();
-            while (expr != "") {
+            while (!expr.equals("")) {
                 System.out.println(convert(expr));
                 System.out.println("Enter an expression");
                 expr = sc.nextLine();

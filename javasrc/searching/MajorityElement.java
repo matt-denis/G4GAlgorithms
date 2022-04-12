@@ -1,6 +1,8 @@
 package searching;
 
 /*
+Problem: the task is to find the element, if any, that occurs more than half
+the length of the array times in agiven array.
 Apply the pigeonhole principle. If there are more elements than half of the array
 length, then there are at least two elements that are next to each other.
 Incidentally, we can show that there is only a unique majority element.

@@ -51,9 +51,9 @@ public class RadixSort {
 
     private static int findMaxDigits(int n) {
         int count = 1;
-        int base = 10;
+        final int base = 10;
         while (n / base != 0) {
-            n /= 10;
+            n /= base;
             count++;
         }
         return count;

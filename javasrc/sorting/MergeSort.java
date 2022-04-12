@@ -39,6 +39,7 @@ public class MergeSort {
                 while (i < m) A[k++] = L[i++];
                 break;
             }
+            // equal sign in <= ensures stability
             if (L[i] <= R[j]) A[k++] = L[i++];
             else A[k++] = R[j++];
         }
