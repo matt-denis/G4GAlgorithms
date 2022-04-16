@@ -30,6 +30,13 @@ public class LinkedListAlgorithms {
         traverseNodesRec(walk.next);
     } 
 
+    /**
+     * find the 1-based position of the given key
+     * @param head node
+     * @param key to search
+     * @return 1-based positon of the node corresponding to key.
+     *         -1 if key is not found
+     */
     public static int search(Node head, int key) {
         var walk = head;
         int pos = 0;
@@ -41,6 +48,13 @@ public class LinkedListAlgorithms {
         return -1;
     }
 
+    /**
+     * find the 1-based position of the given key
+     * @param walk current node in the stack frame
+     * @param key to search
+     * @return 1-based positon of the node corresponding to key.
+     *         -1 if key is not found
+     */
     public static int searchRec(Node walk, int key) {
         if (walk == null) return -1;
         if (walk.item == key) return 1;
@@ -59,8 +73,7 @@ public class LinkedListAlgorithms {
     static Node insertLast(Node head, int x) {
         Node tail = getTail(head);
         if (tail == null) { // list is empty
-            tail = new Node(x);
-            head = tail;
+            head = new Node(x);
         } else {
             tail.next = new Node(x);
         }
@@ -73,7 +86,7 @@ public class LinkedListAlgorithms {
 
     static Node deleteLast(Node head) {
         var preTail = getPretail(head);
-        if (preTail == null) {
+        if (preTail == null) { // one element list
             head = null;
         }
         else preTail.next = null;
@@ -88,7 +101,7 @@ public class LinkedListAlgorithms {
         // starting k from 2 means that k is the position after the current walk
         // alternatively start from 1 and go up to k < pos - 1
         for (int k = 2; walk.next != null && k < pos; walk = walk.next, k++);
-        if (walk.next == null) return head;
+        if (walk.next == null) return head; // list length is less than pos
         walk.next = walk.next.next;
         return head;        
     }
@@ -101,19 +114,28 @@ public class LinkedListAlgorithms {
     }
 
     static Node getPretail(Node head) {
+        // if list length is 0 or 1
         if (head == null || head.next == null) return null;
         var walk = head;
         while (walk.next.next != null) walk = walk.next;
         return walk;
     }
 
+    /**
+     * Inserts an element into the list at a specified position.
+     * @param head of the list
+     * @param pos 1-based index at which element is to be inserted
+     * @param x the element to be inserted
+     * @return the head of the changed list
+     */
     static Node insertAt(Node head, int pos, int x) {
         if (pos <= 0) return null;
         if (pos == 1) return insertFirst(head, x);
         Node walk  = head;
         int k = 1;
+        // go up to the node before the one at pos
         while (walk != null && k < pos - 1) walk = walk.next;
-        if (walk == null) return null;
+        if (walk == null) return null; // index overflow
         Node node = new Node(x);
         node.next = walk.next;
         walk.next = node;
@@ -121,7 +143,8 @@ public class LinkedListAlgorithms {
     }
 
     /**
-     * insert into as sorted list
+     * Inserts a given element into a sorted list.
+     * Requires: the list to be sorted.
      * @param head the head of the list
      * @param x the key to insert
      * @return the head of the list
@@ -167,6 +190,34 @@ public class LinkedListAlgorithms {
         return slow;
     }
 
+    /**
+    * Finds the middle (right if even) node of a linked list.
+    * @param head the head of the linked list.
+    * @return The (right) middle node. Null if head is null, or head if single node.
+    */
+    static Node getRightMiddle(Node head) {
+        Node slow = head, fast = head;
+        // if nodes are 0-based index, right is always going to be at double the index
+        // of slow. This is the algorithm invariant.
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+    
+    static Node getLeftMiddle(Node head) {
+        if (head == null) return null;
+        Node slow = head, fast = head.next;
+        // if nodes are 1-based index, right is always going to be at double the index
+        // of slow. This is the algorithm invariant.
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
     static void printNthNodeFromEnd(Node head, int N) {
         var node = getNthNodeFromEnd(head, N);
         System.out.println(node == null ? null : node.item);
@@ -177,9 +228,10 @@ public class LinkedListAlgorithms {
         if (head == null) return null;
         Node slow = head, fast = head;
         int dist = 1;
-        for ( ; dist < N && fast.next != null; dist++, fast = fast.next);
-        if (dist < N) return null;
-        fast = fast.next;
+        // bring fast to position N + 1: N places after slow
+        for ( ; dist <= N && fast != null; dist++, fast = fast.next);
+        if (dist <= N) return null; // list is shorter than N. fast.next is null
+        // Advance fast and slow together keeping their distance by N places
         for ( ; fast != null; slow = slow.next, fast = fast.next);
         return slow;	
     }
@@ -241,9 +293,10 @@ public class LinkedListAlgorithms {
         return newHead;
     }
 
+    /* Best implementations of recursive reverse */
     static Node reverseRec(Node x) {
         if (x == null || x.next == null) return x;
-        Node newHead = reverseRec(x.next);
+        Node newHead = reverseRec(x.next);  // this is the old tail
         x.next.next = x;
         x.next = null;
         return newHead;
