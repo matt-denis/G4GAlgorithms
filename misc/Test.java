@@ -1,70 +1,37 @@
+import java.util.ArrayList;
+
 public class Test {
 
-
-    
-    static boolean foo(char c) 
-
+    public static int minimum_vertical_sum(ArrayList<ArrayList<Integer>> arr)
     {
-
-        System.out.print(c); 
-
-        return true; 
-
-    } 
-
-    public static void main( String[] argv ) 
-
-    {
-        GFG obj1 = new GFG();
-
-        GFG obj2 = obj1;
-
- 
-
-        obj1.a += 1;
-
-        obj1.b += 1;
-
- 
-
-        System.out.println ("values of obj1 : ");
-
-        obj1.print();
-
-        System.out.println ("values of obj2 : ");
-
-        obj2.print();
+        int minSum = Integer.MAX_VALUE;
+        for (int col = 0; ; col++) {
+            int sum = 0;
+            boolean moreElements = false;
+            for (int i = 0; i < arr.size(); i++) {
+                if (arr.get(i).size() > col) {
+                    moreElements = true;
+                    sum += arr.get(i).get(col);
+                }
+            }
+            if (!moreElements) break;
+            minSum = Math.min(minSum, sum);
+        }
+        return minSum;
     }
 
-    
-}
-        
-class GFG
-
-{
-
-    int a, b;
-
-     
-
-    GFG()
-
-    {
-
-        a = 10;
-
-        b = 20;
-
-    }
-
-     
-
-    public void print()
-
-    {
-
-        System.out.println ("a = " + a + " b = " + b);
-
+    public static void main(String[] args) {
+        var arr = new ArrayList<ArrayList<Integer>>();
+        var a = new ArrayList<Integer>();
+        a.add(2); a.add(3); a.add(5);
+        arr.add(a);
+        a = new ArrayList<>();
+        a.add(1); a.add(2);
+        arr.add(a);
+        a = new ArrayList<>();
+        a.add(1); a.add(4); a.add(5); a.add(1);
+        arr.add(a);
+        System.out.println(minimum_vertical_sum(arr));
     }
 
 }

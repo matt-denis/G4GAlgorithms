@@ -12,7 +12,6 @@ to find the survivor.
 public class Josephus {
 
     static int kill(int n, int k) {
-        if (k >= n) k %= n; 
         Queue<Integer> qu = new LinkedList<>();
         for (int i = 0; i < n; i++) {
             qu.add(i);
@@ -27,6 +26,7 @@ public class Josephus {
         return qu.remove();
     }
 
+    // gfg
     static int josephus(int n, int k)
     {
         LinkedList<Integer> list = new LinkedList<>();
@@ -42,7 +42,7 @@ public class Josephus {
         {
             int count= 0;
             
-            while(count  <k)
+            while(count < k)
             {
                 while(it.hasNext() && count < k)
                 {
@@ -64,6 +64,25 @@ public class Josephus {
         
         return list.getFirst();
     }
+
+    // my implementation
+    public static int josephus2(int n, int k)
+{
+    var ll = new LinkedList<Integer>();
+    for (int i = 0; i < n; i++) {
+        ll.add(i);
+    }
+    Iterator<Integer> it = ll.iterator();
+    while (ll.size() > 1) {
+        for (int i = 1; i <= k; i++) {
+            if (!it.hasNext()) it = ll.iterator();
+            it.next();
+        }
+        it.remove();
+    }
+    
+    return ll.get(0);
+}
 
     public static void main(String[] args) {
         System.out.println(kill(7, 3));
