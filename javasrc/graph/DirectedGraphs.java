@@ -56,7 +56,7 @@ public class DirectedGraphs {
         st.push(v);
     }
 
-    public void topologicalSortBfs() {
+    public Iterable<Integer> topologicalSortBfs() {
         boolean[] marked = new boolean[G.V()];
         Stack<Integer> stack = new Stack<>();
         for (int s = 0; s < G.V(); s++) {
@@ -64,6 +64,7 @@ public class DirectedGraphs {
                 topologicalSortDfs(s, marked, stack);
             }
         }
+        return stack;
     }
 
     public void topologicalSortBfs(int source, boolean[] marked, Stack<Integer> st) {
