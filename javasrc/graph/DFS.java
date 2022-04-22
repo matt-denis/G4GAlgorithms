@@ -108,25 +108,25 @@ public class DFS {
         return false;
     }
 
-    boolean hasCycleDirected2() { 
+    boolean hasCycleDirected() { 
         if (! (G instanceof DirectedGraph)) throw new IllegalArgumentException();
         boolean[] marked = new boolean[G.V()];
         boolean[] callStack = new boolean[G.V()]; 
         boolean hasCycle = false;
         for (int s = 0; s < G.V(); s++) {
             if (!marked[s]) {
-                hasCycle = hasCycleDirected2(s, marked, callStack);
+                hasCycle = hasCycleDirected(s, marked, callStack);
             }
             if (hasCycle) return true;
         }
         return false;
     }
 
-    private boolean hasCycleDirected2(int v, boolean[] marked, boolean[] callStack) {
+    private boolean hasCycleDirected(int v, boolean[] marked, boolean[] callStack) {
         marked[v] = true;
         callStack[v] = true;
         for (int w : G.adj(v)) {
-            if (!marked[w] && hasCycleDirected2(w, marked, callStack)) return true;
+            if (!marked[w] && hasCycleDirected(w, marked, callStack)) return true;
             else if (callStack[w]) return true;
         }
         callStack[v] = false;

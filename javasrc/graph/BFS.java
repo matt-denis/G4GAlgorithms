@@ -27,8 +27,10 @@ public class BFS {
             int v = dq.removeFirst();
             traversal.addLast(v);
             for (int w : G.adj(v)) {
-                marked[w] = true;
-                if (!marked[w]) dq.addLast(w);
+                if (!marked[w]) {
+                    dq.addLast(w);
+                    marked[w] = true;
+                }
             }
         }
         return traversal;
@@ -73,7 +75,7 @@ public class BFS {
         return traversal;
     }
 
-    int nrComonents() {
+    int nrComponents() {
         int components = 0;
         boolean[] marked = new boolean[G.V()];
         for (int s = 0; s < G.V(); s++) {

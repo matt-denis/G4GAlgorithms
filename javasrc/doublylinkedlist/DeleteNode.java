@@ -1,3 +1,9 @@
+/*
+Given the reference to the head of a doubly linked list and a non-negative
+integer x, delete the node at position x (1-based).
+*/
+
+
 package doublylinkedlist;
 
 public class DeleteNode {
@@ -7,7 +13,7 @@ public class DeleteNode {
 	    if (head == null) return null;
 	    Node walk = head;
 	    for (int k = 1; k < x && walk != null; k++, walk = walk.next);
-	    if (walk != null) {
+	    if (walk != null) { // handles case where list is shorter than x
 	        if (walk.prev == null) head = deleteHead(walk);
 	        else if (walk.next == null) deleteTail(walk);
 	        else deleteBetween(walk.prev, walk.next);    

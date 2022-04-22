@@ -1,3 +1,7 @@
+/*
+Compare two circularly linked lists for equality.
+*/
+
 package doublylinkedlist;
 
 public class CompareCLL {

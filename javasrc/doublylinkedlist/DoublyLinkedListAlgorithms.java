@@ -37,6 +37,7 @@ public class DoublyLinkedListAlgorithms {
         pred.prev = node.prev;
         node.prev = pred;
         pred.next = node;
+        if (pred.prev != null) pred.prev.next = pred;
         return pred;
     }
 
@@ -45,6 +46,7 @@ public class DoublyLinkedListAlgorithms {
         succ.next = node.next;
         succ.prev = node;
         node.next = succ;
+        if (succ.next != null) succ.next.prev = succ;
         return succ;
     }
 
