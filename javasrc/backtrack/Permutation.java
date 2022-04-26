@@ -18,11 +18,11 @@ public class Permutation {
         }
     }
 
-    void permuteWithoutAB(String str) {
+    static void permuteWithoutAB(String str) {
         permuteWithoutAB(new StringBuilder(str), 0, str.length() - 1);
     }
 
-    private void permuteWithoutAB(StringBuilder str, int l, int r) {
+    private static void permuteWithoutAB(StringBuilder str, int l, int r) {
         if (l == r) {
             System.out.print(str);
             return;
@@ -30,10 +30,9 @@ public class Permutation {
         for (int i = l + 1; i < r; i++) {
             if (isSafe(str, l, i, r)) {
                 swap(str, l, i);
-                permute(str, l + 1, r);
+                permuteWithoutAB(str, l, r);
                 swap(str, l, i);
             }
-            
         }
     }
 
@@ -55,7 +54,6 @@ public class Permutation {
         }
         return true;
     }
-    
     
     
 }

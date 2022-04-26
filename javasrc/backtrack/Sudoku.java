@@ -5,15 +5,15 @@ public class Sudoku
     //Function to find a solved Sudoku. 
     static boolean SolveSudoku(int grid[][])
     {
-         boolean solved = fill(grid, grid.length, 0, 0);
+        boolean solved = fill(grid, grid.length, 0, 0);
         //  printGrid(grid);
-         return solved;
+        return solved;
     }
     
      static boolean fill(int[][] grid, int n, int row, int col) {
         // base case
         if (row == n - 1 && col == n) return true;
-        if (col == n) {
+        if (col == n) { // go to next row
             col = 0;
             row++;
         }
@@ -30,42 +30,33 @@ public class Sudoku
                 }
             }
         }
-        grid[row][col] = 0;
+        grid[row][col] = 0; // backtracking step
         return false;
         
     }
 
     public static boolean isSafe(int[][] board,int row, int col, int num) 
     { 
-     
-        for (int d = 0; d < board.length; d++)  
-        { 
-            
+        // check same row
+        for (int d = 0; d < board.length; d++) { 
             if (board[row][d] == num) { 
                 return false; 
             } 
         } 
-  
-        for (int r = 0; r < board.length; r++)  
-        { 
-               
-            if (board[r][col] == num)  
-            { 
+        // check same column
+        for (int r = 0; r < board.length; r++) { 
+            if (board[r][col] == num) { 
                 return false; 
             } 
-        }  
+        }
+        // check same subsquare
         int sqrt = (int)Math.sqrt(board.length); 
         int boxRowStart = row - row % sqrt; 
         int boxColStart = col - col % sqrt; 
-  
-        for (int r = boxRowStart; 
-             r < boxRowStart + sqrt; r++)  
-        { 
-            for (int d = boxColStart; 
-                 d < boxColStart + sqrt; d++)  
-            { 
-                if (board[r][d] == num)  
-                { 
+        
+        for (int r = boxRowStart; r < boxRowStart + sqrt; r++) { 
+            for (int d = boxColStart; d < boxColStart + sqrt; d++) { 
+                if (board[r][d] == num) { 
                     return false; 
                 } 
             } 
