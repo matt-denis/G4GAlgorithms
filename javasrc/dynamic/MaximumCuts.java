@@ -66,7 +66,7 @@ public class MaximumCuts {
             if (i - a >= 0) cuts[i] = cuts[i - a];
             if (i - b >= 0) cuts[i] = Math.max(cuts[i], cuts[i - b]);
             if (i - c >= 0) cuts[i] = Math.max(cuts[i], cuts[i - c]);
-            if (cuts[i] != -1) cuts[i]++;
+            if (cuts[i] != -1) cuts[i]++; // add the cut at length i
         }
         return cuts[len];
     }

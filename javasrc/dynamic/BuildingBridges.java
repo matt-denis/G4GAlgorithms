@@ -76,6 +76,6 @@ final class Pair implements Comparable<Pair> {
 
     @Override
     public int compareTo(Pair that) {
-        return this.item1() < that.item2() ? -1 : this.item1() == that.item1() ? 0 : 1; 
+        return this.item1() < that.item1() ? -1 : (this.item1() == that.item1() ? (this.item2() < that.item2() ? -1 : (this.item2() == that.item2() ? 0 : 1)) : 1); 
     }
 }

@@ -3,6 +3,8 @@
  * Given an integer array of length n, find the length of the longest subsequence
  * which is also increasing. If no increasing subsequence exists, we consider single
  * elements as trvial 1-element subsequences of length 1.
+ * 
+ * Strategy: find the lis that ends with every element every element recursively. Then find the maximum of the values collected.
  */
 
 package dynamic;
@@ -23,6 +25,11 @@ public class LIS {
         return arrayMax(lis);
     }
 
+    /**
+     * utility that finds the maximum of an array of ints
+     * @param arr the array
+     * @return the maximum of the array
+     */
     private static int arrayMax(int[] arr) {
         int max = arr[0];
         for (int i = 0; i < arr.length; i++) {
@@ -62,42 +69,31 @@ public class LIS {
 
     // G4G implementation - for some reason it's faster
 
-    static int ceilIdx(int tail[], int l, int r, int key) 
-        { 
+    static int ceilIdx(int tail[], int l, int r, int key) { 
             while (r > l) {         
                 int m = l + (r - l) / 2; 
                 if (tail[m] >= key) 
                     r = m; 
                 else
-                    l = m+1; 
+                    l = m + 1; 
             } 
-      
             return r; 
         } 
   
-    static int lisG4G(int arr[], int n) 
-    { 
-     
-  
+    static int lisG4G(int arr[], int n) { 
         int[] tail = new int[n]; 
-        int len =1; 
-  
+        int len = 1; 
         tail[0] = arr[0]; 
-        
         for (int i = 1; i < n; i++) {
-            
-            if(arr[i] > tail[len - 1])
-            {
+            if (arr[i] > tail[len - 1]) {
                 tail[len] = arr[i];
                 len++;
             }
-            else{
+            else {
                 int c = ceilIdx(tail, 0, len - 1, arr[i]);
-                
                 tail[c] = arr[i];
             }
         } 
-  
         return len; 
     } 
 

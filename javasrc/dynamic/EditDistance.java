@@ -1,5 +1,5 @@
 /**
- * Find the minimum number of operations on cheracters among exchange, delete, insert,
+ * Find the minimum number of operations on characters among exchange, delete, insert,
  * to turn one string s1 into another string s2.
  */
 
@@ -15,8 +15,9 @@ public class EditDistance {
         int insert = ed(s1, s2, m, n - 1);
         int delete = ed(s1, s2, m - 1, n);
         int replace = ed(s1, s2, m - 1, m - 1);
-        return (insert <= delete) ? ((insert <= replace) ? insert : replace) : 
+        int min =  (insert <= delete) ? ((insert <= replace) ? insert : replace) : 
                 ((delete <= replace) ? delete : replace);
+        return min + 1;
     }
 
     static int edMemo(String s1, String s2, int m, int n, int[][] mem) {
@@ -29,8 +30,9 @@ public class EditDistance {
                 int insert = ed(s1, s2, m, n - 1);
                 int delete = ed(s1, s2, m - 1, n);
                 int replace = ed(s1, s2, m - 1, m - 2);
-                mem[m][n] = (insert <= delete) ? ((insert <= replace) ? insert : replace) : 
+                int min = (insert <= delete) ? ((insert <= replace) ? insert : replace) : 
                         ((delete <= replace) ? delete : replace);
+                mem[m][n] = min + 1;
             }
         }
         return mem[m][n];
@@ -47,8 +49,8 @@ public class EditDistance {
             tab[i][0] = i;
         }
 
-        for (int i = 0; i <= m; i++) {
-            for (int j = 0; j <= n; j++) {
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
                 if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
                     tab[i][j] = tab[i - 1][j - 1];
                 } else {

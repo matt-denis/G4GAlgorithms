@@ -47,7 +47,7 @@ public class MLBS {
         for (int i = 1; i < left.length; i++) {
             max = Math.max(max, left[i] + right[i]);
         }
-        return max - 1;
+        return max - 1; // because we are counting the joining element twice
     }
 
     static int mlbsOptimized(int[] seq) {

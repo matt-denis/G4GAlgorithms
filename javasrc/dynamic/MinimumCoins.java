@@ -10,10 +10,8 @@ public class MinimumCoins {
             if (coins[i] < val) {
                 int min = getMin(coins, val - coins[i]);
                 if (min != Integer.MAX_VALUE) res = Math.min(res, min + 1);
-            }
-            
+            }     
         }
-
         return res;
     }
 
@@ -25,10 +23,12 @@ public class MinimumCoins {
             tab[i] = Integer.MAX_VALUE;
             for (int j = 0; j < n; j++) {
                 if (i - coins[j] >= 0) {
-                    tab[i] = Math.min(tab[i], tab[i - coins[j]]);
+                    int subRes = tab[i - coins[j]];
+                    if (subRes != Integer.MAX_VALUE) {
+                        tab[i] = Math.min(tab[i], subRes + 1);
+                    }
                 }
             }
-            if (tab[i] != Integer.MAX_VALUE) tab[i]++;        
         }
         return tab[val];
     }
