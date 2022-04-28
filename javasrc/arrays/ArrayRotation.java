@@ -29,7 +29,7 @@ public class ArrayRotation {
 
     }
 
-    /* Highest common factor with the assumption b <= a */
+    /* Highest common factor */
     private static int hcf(int a, int b) {
         if (b == 0) return a;
         return hcf(b, a % b); // euclid theorem

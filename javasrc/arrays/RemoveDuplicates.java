@@ -31,7 +31,7 @@ public class RemoveDuplicates {
                 }
             }
             if (k == cursor) {
-                a[i] = a[cursor++];
+                a[cursor++] = a[i];
                 count++;
             }
         }
