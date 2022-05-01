@@ -247,6 +247,29 @@ public class LinkedListAlgorithms {
         return trail;
     }
 
+    /* Best implementations of recursive reverse */
+    static Node reverseRec(Node x) {
+        if (x == null || x.next == null) return x;
+        Node newHead = reverseRec(x.next);  // this is the old tail
+        x.next.next = x;
+        x.next = null;
+        return newHead;
+    }
+
+    static Node reverseRecReverseWay(Node head) {
+        return reverseRecReverseWay(null, head);
+    }
+
+    // tail recursive
+    static Node reverseRecReverseWay(Node trail, Node head) {
+        if (head == null) return trail;
+        Node nextNode = head.next;
+        head.next = trail;
+        return reverseRecReverseWay(head, nextNode);
+    }
+
+    /* *********************** alternative implementations ******************* */
+
     static Node reverseRec3(Node head) {
         if (head == null) return null;
         Node[] nodes = reverseRec3(head, new Node[] {head, null});
@@ -293,26 +316,7 @@ public class LinkedListAlgorithms {
         return newHead;
     }
 
-    /* Best implementations of recursive reverse */
-    static Node reverseRec(Node x) {
-        if (x == null || x.next == null) return x;
-        Node newHead = reverseRec(x.next);  // this is the old tail
-        x.next.next = x;
-        x.next = null;
-        return newHead;
-    }
-
-    static Node reverseRecReverseWay(Node head) {
-        return reverseRecReverseWay(null, head);
-    }
-
-    // tail recursive
-    static Node reverseRecReverseWay(Node trail, Node head) {
-        if (head == null) return trail;
-        Node nextNode = head.next;
-        head.next = trail;
-        return reverseRecReverseWay(head, nextNode);
-    }
+    /* *********************************************************************** */
 
     static void removeDuplicatesFromSorted2(Node head) {
         if (head == null) return;
