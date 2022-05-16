@@ -14,7 +14,7 @@ public class BubbleSort {
      */
     private static void sort(int[] a, int lo, int hi) {
         for (int i = hi; i > lo; i--) {
-            boolean swapped = false;
+            boolean swapped = false; // optimization
             for (int j = lo; j < i; j++) {
                 if (a[j] > a[j + 1]) {
                     swap(a, j, j + 1);
