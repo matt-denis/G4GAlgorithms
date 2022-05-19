@@ -4,7 +4,7 @@
  * which is also increasing. If no increasing subsequence exists, we consider single
  * elements as trvial 1-element subsequences of length 1.
  * 
- * Strategy: find the lis that ends with every element every element recursively. Then find the maximum of the values collected.
+ * Strategy: find the lis that ends with every element recursively. Then find the maximum of the values collected.
  */
 
 package dynamic;

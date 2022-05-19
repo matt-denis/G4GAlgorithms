@@ -60,7 +60,7 @@ public class Kadane2 {
      * This strategy recursively covers all possible sum combinations
      * as e.g. the term 4 steps before the i'th term (i - 4) is included
      *  in the case -2, -2 and the term 5 steps before the i'th
-     *  (i -5) in the case -2, -3 
+     *  (i - 5) in the case -2, -3 
      * 
      */
     private void fillMax(int[] arr, long[] max) {
