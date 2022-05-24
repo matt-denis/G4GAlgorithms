@@ -35,12 +35,12 @@ public class OpenAddressingHashTable {
     private int getIndex(int key) {
         int probe = hash(key);
         if (table[probe] == key) return probe;
-        int offset = 1;
+        int offset = 0;
         int start = probe;
         int firstDeletion = -1;
         do {
             offset++;
-            probe = (probe + offset) / capacity;
+            probe = (probe + offset) % capacity;
             if (firstDeletion == -1 && table[probe] == -2) firstDeletion = probe;
 
         } while (probe != start && table[probe] != key && table[probe] != -1);
