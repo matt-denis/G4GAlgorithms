@@ -22,8 +22,7 @@ public class DirectedGraphs {
         Deque<Integer> dq = new ArrayDeque<>();
         for (int v = 0; v < indegree.length; v++) {
             if (indegree[v] == 0) {
-                dq.addLast(v);
-                
+                dq.addLast(v); 
             }
         }
         int count = 0;
@@ -61,7 +60,7 @@ public class DirectedGraphs {
         Stack<Integer> stack = new Stack<>();
         for (int s = 0; s < G.V(); s++) {
             if (!marked[s]) {
-                topologicalSortDfs(s, marked, stack);
+                topologicalSortBfs(s, marked, stack);
             }
         }
         return stack;
@@ -98,16 +97,13 @@ public class DirectedGraphs {
         for (int s = 0; s < G.V(); s++) {
             if (indegree[s] == 0) dq.addLast(s);
         }
-        topologicalSortKahn(indegree, sort, dq);
-        return sort;
-    }
-
-    public void topologicalSortKahn(int[] indegree, Deque<Integer> sort, Deque<Integer> dq) {
         while (!dq.isEmpty()) {
             int v = dq.removeFirst();
-            for (int w : G.adj(v)) { // adjecents cannot have indegree less than 1 by construction
+            sort.addLast(v);
+            for (int w : G.adj(v)) {
                 if (--indegree[w] == 0) dq.addLast(w);
             }
         }
+        return sort;
     }
 }

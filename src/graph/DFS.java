@@ -100,7 +100,7 @@ public class DFS {
         marked[v] = true;
         for (int w : G.adj(v)) {
             if (!marked[w]) {
-                if (hasCycle(w, parent, marked))
+                if (hasCycle(w, v, marked))
                     return true;
             }
             else if (w != parent) return true;
