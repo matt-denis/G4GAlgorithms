@@ -12,10 +12,8 @@ public class IterativeTraversals {
     public Iterable<Node> inorder(Node root) {
         Deque<Node> stack = new LinkedList<>();
         List<Node> traversal = new ArrayList<>();
-        if (root == null) return traversal;
-        stack.add(root);
         Node walk = root;
-        while (!stack.isEmpty()) {
+        while (walk != null || !stack.isEmpty()) {
             while (walk != null) {
                 stack.push(walk);
                 walk = walk.left;
@@ -24,6 +22,26 @@ public class IterativeTraversals {
             traversal.add(walk);
             walk = walk.right;
         }
+        return traversal;
+    }
+
+    public Iterable<Node> inorder2(Node root) {
+        Deque<Node> stack = new LinkedList<>();
+        List<Node> traversal = new ArrayList<>();
+        if (root == null) return traversal;
+        stack.add(root);
+        Node walk = null;
+        while (!stack.isEmpty()) {
+            walk = stack.pop();
+            while (walk != null) {
+                stack.push(walk);
+                walk = walk.left;
+            }
+            walk = stack.pop();
+            traversal.add(walk);
+            if (walk.right != null) stack.add(walk.right);
+        }
+
         return traversal;
     }
 
