@@ -1,5 +1,6 @@
 /**
-You are given an array arr of size sizeOfArr. You need to find the maximum sum in the array provided that you cannot sum neighboring elements or adjacent elements.
+You are given an array arr of size sizeOfArr. You need to find the maximum sum in the array provided that you cannot sum
+neighboring elements or adjacent elements.
 
 Example 1:
 

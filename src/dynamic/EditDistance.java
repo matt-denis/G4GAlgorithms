@@ -9,8 +9,8 @@ package dynamic;
 public class EditDistance {
 
     static int ed(String s1, String s2, int m, int n) {
-        if (m == 0) return n;
-        if (n == 0) return m;
+        if (m == 0) return n; // have to insert n characters
+        if (n == 0) return m; // have to delete m characters
         if (s1.charAt(m - 1) == s2.charAt(n - 1)) return ed(s1, s2, m - 1, n - 1);
         int insert = ed(s1, s2, m, n - 1);
         int delete = ed(s1, s2, m - 1, n);
@@ -29,7 +29,7 @@ public class EditDistance {
             } else {
                 int insert = ed(s1, s2, m, n - 1);
                 int delete = ed(s1, s2, m - 1, n);
-                int replace = ed(s1, s2, m - 1, m - 2);
+                int replace = ed(s1, s2, m - 1, m - 1);
                 int min = (insert <= delete) ? ((insert <= replace) ? insert : replace) : 
                         ((delete <= replace) ? delete : replace);
                 mem[m][n] = min + 1;
@@ -40,7 +40,7 @@ public class EditDistance {
 
     static int edTab(String s1, String s2) {
         final int m = s1.length(), n = s2.length();
-        final int[][] tab = new int[m][n];
+        final int[][] tab = new int[m + 1][n + 1];
 
         for (int j = 0; j <= n; j++) {
             tab[0][j] = j;

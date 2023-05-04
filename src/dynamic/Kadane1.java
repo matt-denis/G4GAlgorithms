@@ -1,7 +1,9 @@
 /**
-Kadane's algorithm comes into picture when we want to find the maximum possible sum in an array when summing the contiguous elements of the array.
+Kadane's algorithm comes into picture when we want to find the maximum possible sum in an array when summing
+the contiguous elements of the array.
 
-You are given an array. Find the maximum possible sum of contiguous elements of the array ending at each position in the array. Also, return the overall maximum that we can achieve.
+You are given an array. Find the maximum possible sum of contiguous elements of the array ending at each position in the array.
+Also, return the overall maximum that we can achieve.
 
  
 
@@ -25,7 +27,9 @@ Output: -9 -8 8 11 7
          11
 
 Your Task:
-This is a function problem. You don't need to take any input. Just complete the function maximumSum() that takes the integer array and its size as inputs and prints the maximum contiguous subarray sum ending at each position in the array. Also, return the overall maximum.
+This is a function problem. You don't need to take any input. Just complete the function maximumSum() that takes the integer array
+and its size as inputs and prints the maximum contiguous subarray sum ending at each position in the array.
+Also, return the overall maximum.
 
 
 Expected Time Complexity: O(N).

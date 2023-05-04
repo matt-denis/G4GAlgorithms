@@ -1,6 +1,6 @@
 /**
  * Given an array of positive integers, we want to find the minimum number of jumps
- * required to reach the end from the start.p Each integer represents the number of
+ * required to reach the end from the start. Each integer represents the number of
  * places in the array that we can jump to; so for intsance if an element is 3, we can 
  * go to 1, 2 and 3 places to the right of it.
  */
@@ -11,7 +11,7 @@ package dynamic;
 public class MinJumps {
 
     /**
-     * Requires array is non empty}
+     * Requires: array is non empty
      * @param arr the array to jump over
      * @return the number of jumps required to reach the end of {@code arr}
      *          from the start
@@ -21,13 +21,12 @@ public class MinJumps {
     }
 
     private int findMin(int[] arr, int currIdx)  {
-        if (currIdx >= arr.length) return Integer.MAX_VALUE;
-        if (currIdx == arr.length - 1) return 0;
+        if (currIdx >= arr.length - 1) return 0;
         int minJumps = Integer.MAX_VALUE;
         for (int i = 1; i <= arr[currIdx]; i++) {
             minJumps = Math.min(minJumps, findMin(arr, currIdx + i));
         }
-        return minJumps + 1; // include the current jump
+        return minJumps != Integer.MAX_VALUE ? minJumps + 1 : minJumps; // include the current jump
     }
 
     int findMinG4G(int[] arr, int n) {
